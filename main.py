@@ -28,14 +28,9 @@ def encode(text_file, img_file):
         print('Too long text')
         return
 
-    # file1 = open(img_file, 'rb')
-    # file2 = open('encoded.bmp', 'wb')
-    # file3 = open(text_file, 'r')
-
     with open(img_file, 'rb') as file1, open('encoded.bmp', 'wb') as file2, open(text_file,
                                                                                  'r') as file3:
         header = file1.read(54)
-        # print(f'HEADER {header}')
         file2.write(header)
 
         while True:
@@ -63,11 +58,6 @@ def encode(text_file, img_file):
         file2.write(file1.read())
 
 
-# file1.close()
-# file2.close()
-# file3.close()
-
-
 def decode(img_file):
     degree = 2
     count_read = int(input('How many symbols to read: \n'))
@@ -76,9 +66,6 @@ def decode(img_file):
     if count_read >= img_len * degree / 8 - 54:
         print('Too long text')
         return
-
-    # file1 = open(img_file, 'rb')
-    # file2 = open('decoded.txt', 'w')
 
     with open(img_file, 'rb') as file1, open('decoded.txt', 'w') as file2:
         file1.seek(54)
@@ -95,9 +82,6 @@ def decode(img_file):
             print('symbol #{0} is {1:c}'.format(k, symbol))
             k += 1
             file2.write(chr(symbol))
-
-    # file1.close()
-    # file2.close()
 
 
 def run():
